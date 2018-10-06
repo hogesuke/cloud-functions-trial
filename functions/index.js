@@ -1,5 +1,6 @@
 const express = require('express');
 const functions = require('firebase-functions');
+const cors = require('cors');
 const admin = require('firebase-admin');
 const serviceAccount = require('./config.json');
 
@@ -15,7 +16,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 // expressを使用した場合
 const app = express();
 
-// app.get('/:id', (req, res) => res.send('Hello!!!'));
+app.use(cors({ origin: true }));
 
 app.get('/cities', (req, res) => {
     const db = admin.firestore();
